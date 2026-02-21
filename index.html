@@ -956,6 +956,76 @@
         }
 
         /* ============================================
+           EMAIL POPUP (inside loading overlay)
+           ============================================ */
+        .email-popup {
+            display: none;
+            margin-top: 28px;
+            padding: 24px;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            animation: fadeUp 0.4s ease both;
+        }
+        .email-popup.visible {
+            display: block;
+        }
+        .email-popup p {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-text);
+            margin-bottom: 16px;
+        }
+        .email-popup-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .email-popup-yes {
+            flex: 1;
+            padding: 10px 16px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .email-popup-yes:hover {
+            background: var(--color-primary-dark);
+        }
+        .email-popup-no {
+            padding: 10px 16px;
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            font-family: var(--font-body);
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .email-popup-no:hover {
+            border-color: var(--color-text-secondary);
+        }
+        .email-popup-confirmed {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+        .email-popup-confirmed svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ============================================
            PRICING
            ============================================ */
         .pricing {
@@ -1787,6 +1857,14 @@
                     Packaging your HTML...
                 </div>
             </div>
+            <!-- Email popup — appears after 15s -->
+            <div class="email-popup" id="emailPopup">
+                <p>Don't want to wait? We'll email you the blog!</p>
+                <div class="email-popup-actions" id="emailPopupActions">
+                    <button class="email-popup-yes" onclick="acceptEmailBlog()">Yes, email it to me</button>
+                    <button class="email-popup-no" onclick="dismissEmailPopup()">No thanks, I'll wait</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1874,6 +1952,19 @@
 
         // ---- Form submission ----
         let generatedHtml = '';
+        let emailRequested = false;
+        let emailPopupTimer = null;
+
+        function acceptEmailBlog() {
+            emailRequested = true;
+            const popup = document.getElementById('emailPopup');
+            const actions = document.getElementById('emailPopupActions');
+            actions.innerHTML = '<div class="email-popup-confirmed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> We\'ll deliver it within 2 minutes. Don\'t forget to check spam!</div>';
+        }
+
+        function dismissEmailPopup() {
+            document.getElementById('emailPopup').classList.remove('visible');
+        }
 
         async function handleSubmit(e) {
             e.preventDefault();
@@ -1890,6 +1981,14 @@
             } catch {
                 data.business_name = 'Your Business';
             }
+
+            // Reset email popup state
+            emailRequested = false;
+            const emailPopup = document.getElementById('emailPopup');
+            emailPopup.classList.remove('visible');
+            document.getElementById('emailPopupActions').innerHTML =
+                '<button class="email-popup-yes" onclick="acceptEmailBlog()">Yes, email it to me</button>' +
+                '<button class="email-popup-no" onclick="dismissEmailPopup()">No thanks, I\'ll wait</button>';
 
             // Show loading
             const loading = document.getElementById('loadingOverlay');
@@ -1915,6 +2014,7 @@
                     el.classList.remove('active', 'done');
                     el.querySelector('.loading-step-icon').innerHTML = '';
                 });
+                emailPopup.classList.remove('visible');
             }
 
             // Animate steps on a timer while we wait for the API
@@ -1926,6 +2026,11 @@
                 setTimeout(() => markStep(4), 70000),   // step5: Optimizing
             ];
 
+            // Show email popup after 15s
+            emailPopupTimer = setTimeout(() => {
+                emailPopup.classList.add('visible');
+            }, 15000);
+
             try {
                 const response = await fetch('https://api.bloggedai.com/api/generate-blog', {
                     method: 'POST',
@@ -1933,8 +2038,9 @@
                     body: JSON.stringify(data)
                 });
 
-                // Clear any pending step timers
+                // Clear any pending step timers and email popup timer
                 stepTimers.forEach(t => clearTimeout(t));
+                clearTimeout(emailPopupTimer);
 
                 const text = await response.text();
                 let result;
@@ -1946,6 +2052,20 @@
 
                 if (!response.ok) {
                     throw new Error(result.error || 'Blog generation failed');
+                }
+
+                // If user opted for email, fire-and-forget the email request
+                if (emailRequested && data.email) {
+                    fetch('https://api.bloggedai.com/api/send-blog-email', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            email: data.email,
+                            html: result.html,
+                            title: result.title,
+                            keyword_used: result.keyword_used
+                        })
+                    }).catch(() => {}); // fire-and-forget
                 }
 
                 // Mark all steps as done
@@ -1966,6 +2086,7 @@
 
             } catch (err) {
                 stepTimers.forEach(t => clearTimeout(t));
+                clearTimeout(emailPopupTimer);
                 loading.classList.remove('active');
                 resetSteps();
                 alert('Something went wrong: ' + err.message);
