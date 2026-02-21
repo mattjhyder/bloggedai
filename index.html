@@ -1877,91 +1877,93 @@
 
         async function handleSubmit(e) {
             e.preventDefault();
-            
+
             const form = e.target;
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+
+            // Derive business_name from website URL
+            try {
+                const urlObj = new URL(data.website_url);
+                data.business_name = urlObj.hostname.replace(/^www\./, '').split('.')[0];
+                data.business_name = data.business_name.charAt(0).toUpperCase() + data.business_name.slice(1);
+            } catch {
+                data.business_name = 'Your Business';
+            }
 
             // Show loading
             const loading = document.getElementById('loadingOverlay');
             loading.classList.add('active');
 
-            // Simulate loading steps (replace with real API call later)
+            const checkIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
             const steps = ['step1', 'step2', 'step3', 'step4', 'step5'];
-            const delays = [2000, 4000, 8000, 12000, 14000];
 
-            steps.forEach((step, i) => {
-                setTimeout(() => {
-                    // Mark previous as done
-                    if (i > 0) {
-                        document.getElementById(steps[i-1]).classList.remove('active');
-                        document.getElementById(steps[i-1]).classList.add('done');
-                        document.getElementById(steps[i-1]).querySelector('.loading-step-icon').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
-                    }
-                    document.getElementById(step).classList.add('active');
-                }, delays[i]);
-            });
+            function markStep(index) {
+                if (index > 0) {
+                    document.getElementById(steps[index-1]).classList.remove('active');
+                    document.getElementById(steps[index-1]).classList.add('done');
+                    document.getElementById(steps[index-1]).querySelector('.loading-step-icon').innerHTML = checkIcon;
+                }
+                if (index < steps.length) {
+                    document.getElementById(steps[index]).classList.add('active');
+                }
+            }
 
-            // TODO: Replace this with actual API call to your Flask backend
-            // const response = await fetch('https://api.bloggedai.com/api/generate-blog', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data)
-            // });
-            // const result = await response.json();
+            function resetSteps() {
+                steps.forEach(s => {
+                    const el = document.getElementById(s);
+                    el.classList.remove('active', 'done');
+                    el.querySelector('.loading-step-icon').innerHTML = '';
+                });
+            }
 
-            // Simulated response (remove when API is connected)
-            setTimeout(() => {
-                // Mark last step as done
-                document.getElementById('step5').classList.remove('active');
-                document.getElementById('step5').classList.add('done');
-                document.getElementById('step5').querySelector('.loading-step-icon').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+            // Animate steps on a timer while we wait for the API
+            markStep(0); // step1: Analyzing
+            const stepTimers = [
+                setTimeout(() => markStep(1), 3000),   // step2: Researching keywords
+                setTimeout(() => markStep(2), 8000),    // step3: Writing blog
+                setTimeout(() => markStep(3), 40000),   // step4: Generating image
+                setTimeout(() => markStep(4), 70000),   // step5: Optimizing
+            ];
 
-                // Hide loading, show results
+            try {
+                const response = await fetch('https://api.bloggedai.com/api/generate-blog', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                // Clear any pending step timers
+                stepTimers.forEach(t => clearTimeout(t));
+
+                if (!response.ok) {
+                    throw new Error(result.error || 'Blog generation failed');
+                }
+
+                // Mark all steps as done
+                steps.forEach((step, i) => {
+                    const el = document.getElementById(step);
+                    el.classList.remove('active');
+                    el.classList.add('done');
+                    el.querySelector('.loading-step-icon').innerHTML = checkIcon;
+                });
+
+                // Brief pause then show results
                 setTimeout(() => {
                     loading.classList.remove('active');
-                    // Reset loading steps for next time
-                    steps.forEach(s => {
-                        const el = document.getElementById(s);
-                        el.classList.remove('active', 'done');
-                        el.querySelector('.loading-step-icon').innerHTML = '';
-                    });
+                    resetSteps();
+                    generatedHtml = result.html;
+                    showResults(result.html, result.keyword_used || 'your keyword');
+                }, 800);
 
-                    // Show demo result
-                    generatedHtml = getDemoHtml(data);
-                    showResults(generatedHtml, 'best tallow moisturizer for dry skin');
-                }, 500);
-            }, 16000);
-        }
-
-        function getDemoHtml(data) {
-            return `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Demo Blog Post — BloggedAi</title>
-<style>
-body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 40px 20px; color: #1a1a1a; line-height: 1.7; }
-h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 16px; }
-h2 { font-size: 1.4rem; margin-top: 32px; margin-bottom: 12px; }
-p { margin-bottom: 16px; }
-.badge { background: #E8F0FE; color: #1A73E8; padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 20px; }
-.cta { background: #1A73E8; color: white; padding: 14px 28px; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 24px; font-weight: 600; }
-</style>
-</head>
-<body>
-<div class="badge">Generated by BloggedAi</div>
-<h1>This Is a Demo Blog Preview</h1>
-<p><strong>This is a preview of what your generated blog will look like.</strong> When the API is connected, this will be your actual SEO-optimized blog post with full content, structured data, FAQ sections, and a custom hero image.</p>
-<h2>What You'll Get</h2>
-<p>Your real blog will include 1,500–2,500 words of keyword-optimized content, JSON-LD schema markup for rich snippets, an AI-generated hero image, internal linking, and a structured FAQ section targeting "People Also Ask" results.</p>
-<h2>How It Works</h2>
-<p>We analyzed <strong>${data.website_url || 'your website'}</strong> in the <strong>${data.industry?.replace(/-/g, ' ') || 'your'}</strong> industry and selected a low-competition keyword matched to your domain authority.</p>
-<p>Publish this HTML on your site and you should see ranking movement within 5–10 days.</p>
-<a href="https://www.bloggedai.com" class="cta">Get More Blogs at BloggedAi.com</a>
-</body>
-</html>`;
+            } catch (err) {
+                stepTimers.forEach(t => clearTimeout(t));
+                loading.classList.remove('active');
+                resetSteps();
+                alert('Something went wrong: ' + err.message);
+            }
         }
 
         // ---- Results display ----
