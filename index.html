@@ -1321,95 +1321,235 @@
             background: radial-gradient(circle, rgba(0,200,150,0.08) 0%, rgba(26,115,232,0.04) 40%, transparent 70%);
             pointer-events: none;
         }
-        .case-study .section-label {
-            color: var(--color-accent);
-        }
-        .case-study .section-title {
-            color: #FFFFFF;
-        }
-        .case-study .section-subtitle {
-            color: rgba(255,255,255,0.55);
-        }
+        .case-study .section-label { color: var(--color-accent); }
+        .case-study .section-title { color: #FFFFFF; }
+        .case-study .section-subtitle { color: rgba(255,255,255,0.55); }
         .case-study-header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 56px;
             position: relative;
             z-index: 1;
         }
-        .case-study-header .section-subtitle {
-            margin: 0 auto;
-            max-width: 580px;
+        .case-study-header .section-subtitle { margin: 0 auto; max-width: 580px; }
+        .case-study-timeframe {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,200,150,0.1);
+            border: 1px solid rgba(0,200,150,0.2);
+            color: var(--color-accent);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
         }
-        .case-study-grid {
+
+        /* Hero chart card */
+        .cs-hero-chart {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px 28px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(8px);
+        }
+        .cs-hero-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .cs-hero-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 8px;
+        }
+        .cs-hero-value {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .cs-hero-growth {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(0,200,150,0.12);
+            color: var(--color-accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            margin-top: 8px;
+        }
+        .cs-hero-growth svg { width: 16px; height: 16px; }
+        .cs-hero-from {
+            text-align: right;
+            font-size: 14px;
+            color: rgba(255,255,255,0.35);
+        }
+        .cs-hero-from strong {
+            display: block;
+            font-size: 20px;
+            color: rgba(255,255,255,0.5);
+            font-family: var(--font-heading);
+        }
+        .cs-chart-area {
+            width: 100%;
+            height: 180px;
+            position: relative;
+        }
+        .cs-chart-area svg { width: 100%; height: 100%; }
+        .cs-chart-fill {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        .cs-chart-line {
+            stroke-dasharray: 1200;
+            stroke-dashoffset: 1200;
+            transition: stroke-dashoffset 2s ease;
+        }
+        .case-study.animated .cs-chart-fill { opacity: 1; }
+        .case-study.animated .cs-chart-line { stroke-dashoffset: 0; }
+        .cs-chart-months {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 4px 0;
+        }
+        .cs-chart-months span {
+            font-size: 11px;
+            color: rgba(255,255,255,0.25);
+            font-weight: 500;
+        }
+
+        /* Metric bar cards */
+        .cs-bar-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             position: relative;
             z-index: 1;
         }
-        .case-study-card {
+        .cs-bar-card {
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: var(--radius-lg);
-            padding: 32px 28px;
-            position: relative;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            padding: 28px 24px;
             backdrop-filter: blur(8px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
-        .case-study-card:hover {
+        .cs-bar-card:hover {
             transform: translateY(-4px);
             border-color: rgba(0,200,150,0.25);
         }
-        .case-study-card-label {
-            font-size: 13px;
+        .cs-bar-label {
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             color: rgba(255,255,255,0.4);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
-        .case-study-numbers {
+        .cs-bar-values {
             display: flex;
+            justify-content: space-between;
             align-items: baseline;
-            gap: 12px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
-        .case-study-before {
+        .cs-bar-after {
             font-family: var(--font-heading);
-            font-size: 20px;
-            font-weight: 400;
-            color: rgba(255,255,255,0.3);
-            text-decoration: line-through;
-            text-decoration-color: rgba(255,255,255,0.15);
-        }
-        .case-study-arrow {
-            color: rgba(255,255,255,0.2);
-            font-size: 16px;
-        }
-        .case-study-after {
-            font-family: var(--font-heading);
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
-            color: #FFFFFF;
+            color: #fff;
             letter-spacing: -0.02em;
+            line-height: 1;
         }
-        .case-study-growth {
-            display: inline-block;
+        .cs-bar-pct {
             font-family: var(--font-heading);
-            font-size: 28px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--color-accent);
-            text-shadow: 0 0 20px rgba(0,200,150,0.4), 0 0 40px rgba(0,200,150,0.15);
-            letter-spacing: -0.01em;
+            text-shadow: 0 0 16px rgba(0,200,150,0.35);
         }
-        .case-study-growth.new-channel {
-            font-size: 22px;
+        .cs-bar-pct.new-tag {
+            font-size: 14px;
             background: linear-gradient(135deg, var(--color-accent), #00E5FF);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            filter: drop-shadow(0 0 12px rgba(0,200,150,0.3));
         }
+        .cs-bar-track {
+            height: 8px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .cs-bar-before-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(255,255,255,0.12);
+            border-radius: 4px;
+            transition: width 1.2s ease 0.3s;
+            width: 0;
+        }
+        .cs-bar-after-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-accent), #00E5FF);
+            border-radius: 4px;
+            box-shadow: 0 0 12px rgba(0,200,150,0.3);
+            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
+            width: 0;
+        }
+        .case-study.animated .cs-bar-before-fill,
+        .case-study.animated .cs-bar-after-fill {
+            width: var(--bar-width);
+        }
+        .cs-bar-legend {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+        }
+        .cs-bar-legend span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .cs-bar-legend .dot-before {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+        }
+        .cs-bar-legend .dot-after {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            box-shadow: 0 0 6px rgba(0,200,150,0.4);
+        }
+
+        /* CTA */
         .case-study-cta {
             text-align: center;
             margin-top: 56px;
@@ -1435,30 +1575,7 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 32px rgba(0,200,150,0.4);
         }
-        .case-study-cta a svg {
-            width: 20px;
-            height: 20px;
-        }
-        .case-study-timeframe {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,200,150,0.1);
-            border: 1px solid rgba(0,200,150,0.2);
-            color: var(--color-accent);
-            padding: 5px 14px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 20px;
-        }
-
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .case-study-cta a svg { width: 20px; height: 20px; }
 
         /* ============================================
            RESPONSIVE
@@ -1477,7 +1594,7 @@
             .generator-info {
                 position: static;
             }
-            .case-study-grid {
+            .cs-bar-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -1490,10 +1607,12 @@
             .proof-stats { gap: 32px; }
             .steps-grid { grid-template-columns: 1fr; }
             .included-grid { grid-template-columns: 1fr; }
-            .case-study-grid { grid-template-columns: 1fr; }
+            .cs-bar-grid { grid-template-columns: 1fr; }
             .case-study { padding: 80px 0; }
-            .case-study-after { font-size: 28px; }
-            .case-study-growth { font-size: 22px; }
+            .cs-hero-value { font-size: 36px; }
+            .cs-bar-after { font-size: 26px; }
+            .cs-hero-chart { padding: 28px 20px 20px; }
+            .cs-chart-area { height: 140px; }
             .pricing-grid {
                 grid-template-columns: 1fr !important;
                 max-width: 400px;
@@ -2086,62 +2205,142 @@
                 <h2 class="section-title">Real Results. Real Brand. 5&nbsp;Months.</h2>
                 <p class="section-subtitle">Here's what happened when we turned on BloggedAi for an e&#8209;commerce skincare brand.</p>
             </div>
-            <div class="case-study-grid">
-                <div class="case-study-card fade-up">
-                    <div class="case-study-card-label">Organic Traffic</div>
-                    <div class="case-study-numbers">
-                        <span class="case-study-before">296/mo</span>
-                        <span class="case-study-arrow">&rarr;</span>
-                        <span class="case-study-after"><span data-count="2354" data-suffix="/mo">0/mo</span></span>
+
+            <!-- Hero chart — Organic Traffic -->
+            <div class="cs-hero-chart fade-up">
+                <div class="cs-hero-top">
+                    <div>
+                        <div class="cs-hero-label">Organic Traffic</div>
+                        <div class="cs-hero-value"><span data-count="2354" data-separator="true">0</span><span style="font-size:20px;color:rgba(255,255,255,0.4);font-weight:400;">/mo</span></div>
+                        <div class="cs-hero-growth">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                            <span data-count="695" data-prefix="+" data-suffix="%">0%</span>
+                        </div>
                     </div>
-                    <div class="case-study-growth"><span data-count="695" data-prefix="+" data-suffix="%">0%</span></div>
+                    <div class="cs-hero-from">
+                        <span>Sep 2025</span>
+                        <strong>296/mo</strong>
+                    </div>
                 </div>
-                <div class="case-study-card fade-up">
-                    <div class="case-study-card-label">Top 3 Keywords</div>
-                    <div class="case-study-numbers">
-                        <span class="case-study-before">8</span>
-                        <span class="case-study-arrow">&rarr;</span>
-                        <span class="case-study-after"><span data-count="56">0</span></span>
-                    </div>
-                    <div class="case-study-growth"><span data-count="600" data-prefix="+" data-suffix="%">0%</span></div>
+                <div class="cs-chart-area">
+                    <svg viewBox="0 0 600 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grid lines -->
+                        <line x1="0" y1="40" x2="600" y2="40" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                        <line x1="0" y1="80" x2="600" y2="80" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                        <line x1="0" y1="120" x2="600" y2="120" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                        <!-- Area fill -->
+                        <path class="cs-chart-fill" d="M0,140 L0,140 L100,135 L200,125 L300,105 L400,70 L500,35 L600,12 L600,160 L0,160 Z" fill="url(#areaGrad)"/>
+                        <!-- Line -->
+                        <polyline class="cs-chart-line" points="0,140 100,135 200,125 300,105 400,70 500,35 600,12" fill="none" stroke="var(--color-accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- Data dots -->
+                        <circle cx="0" cy="140" r="4" fill="#0B0F1A" stroke="var(--color-accent)" stroke-width="2"/>
+                        <circle cx="100" cy="135" r="4" fill="#0B0F1A" stroke="var(--color-accent)" stroke-width="2"/>
+                        <circle cx="200" cy="125" r="4" fill="#0B0F1A" stroke="var(--color-accent)" stroke-width="2"/>
+                        <circle cx="300" cy="105" r="4" fill="#0B0F1A" stroke="var(--color-accent)" stroke-width="2"/>
+                        <circle cx="400" cy="70" r="4" fill="#0B0F1A" stroke="var(--color-accent)" stroke-width="2"/>
+                        <circle cx="500" cy="35" r="4" fill="#0B0F1A" stroke="var(--color-accent)" stroke-width="2"/>
+                        <circle cx="600" cy="12" r="5" fill="var(--color-accent)" stroke="var(--color-accent)" stroke-width="2"/>
+                        <defs>
+                            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="var(--color-accent)" stop-opacity="0.25"/>
+                                <stop offset="100%" stop-color="var(--color-accent)" stop-opacity="0.02"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
                 </div>
-                <div class="case-study-card fade-up">
-                    <div class="case-study-card-label">Total Rankings</div>
-                    <div class="case-study-numbers">
-                        <span class="case-study-before">627</span>
-                        <span class="case-study-arrow">&rarr;</span>
-                        <span class="case-study-after"><span data-count="1560" data-separator="true">0</span></span>
-                    </div>
-                    <div class="case-study-growth"><span data-count="149" data-prefix="+" data-suffix="%">0%</span></div>
-                </div>
-                <div class="case-study-card fade-up">
-                    <div class="case-study-card-label">AI Overviews</div>
-                    <div class="case-study-numbers">
-                        <span class="case-study-before">2</span>
-                        <span class="case-study-arrow">&rarr;</span>
-                        <span class="case-study-after"><span data-count="108">0</span></span>
-                    </div>
-                    <div class="case-study-growth"><span data-count="5300" data-prefix="+" data-suffix="%" data-separator="true">0%</span></div>
-                </div>
-                <div class="case-study-card fade-up">
-                    <div class="case-study-card-label">SERP Features</div>
-                    <div class="case-study-numbers">
-                        <span class="case-study-before">42</span>
-                        <span class="case-study-arrow">&rarr;</span>
-                        <span class="case-study-after"><span data-count="282">0</span></span>
-                    </div>
-                    <div class="case-study-growth"><span data-count="571" data-prefix="+" data-suffix="%">0%</span></div>
-                </div>
-                <div class="case-study-card fade-up">
-                    <div class="case-study-card-label">AI Audience Reach</div>
-                    <div class="case-study-numbers">
-                        <span class="case-study-before">0</span>
-                        <span class="case-study-arrow">&rarr;</span>
-                        <span class="case-study-after">1M+</span>
-                    </div>
-                    <div class="case-study-growth new-channel">New channel</div>
+                <div class="cs-chart-months">
+                    <span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span><span>Jan</span><span>Feb</span><span>Now</span>
                 </div>
             </div>
+
+            <!-- Metric bar cards -->
+            <div class="cs-bar-grid">
+                <!-- Top 3 Keywords -->
+                <div class="cs-bar-card fade-up">
+                    <div class="cs-bar-label">Top 3 Keywords</div>
+                    <div class="cs-bar-values">
+                        <div class="cs-bar-after"><span data-count="56">0</span></div>
+                        <div class="cs-bar-pct"><span data-count="600" data-prefix="+" data-suffix="%">0%</span></div>
+                    </div>
+                    <div class="cs-bar-track">
+                        <div class="cs-bar-before-fill" style="--bar-width:14%"></div>
+                        <div class="cs-bar-after-fill" style="--bar-width:100%"></div>
+                    </div>
+                    <div class="cs-bar-legend">
+                        <span><span class="dot-before"></span>Before: 8</span>
+                        <span><span class="dot-after"></span>After: 56</span>
+                    </div>
+                </div>
+
+                <!-- Total Rankings -->
+                <div class="cs-bar-card fade-up">
+                    <div class="cs-bar-label">Total Rankings</div>
+                    <div class="cs-bar-values">
+                        <div class="cs-bar-after"><span data-count="1560" data-separator="true">0</span></div>
+                        <div class="cs-bar-pct"><span data-count="149" data-prefix="+" data-suffix="%">0%</span></div>
+                    </div>
+                    <div class="cs-bar-track">
+                        <div class="cs-bar-before-fill" style="--bar-width:40%"></div>
+                        <div class="cs-bar-after-fill" style="--bar-width:100%"></div>
+                    </div>
+                    <div class="cs-bar-legend">
+                        <span><span class="dot-before"></span>Before: 627</span>
+                        <span><span class="dot-after"></span>After: 1,560</span>
+                    </div>
+                </div>
+
+                <!-- AI Overviews -->
+                <div class="cs-bar-card fade-up">
+                    <div class="cs-bar-label">AI Overviews</div>
+                    <div class="cs-bar-values">
+                        <div class="cs-bar-after"><span data-count="108">0</span></div>
+                        <div class="cs-bar-pct"><span data-count="5300" data-prefix="+" data-suffix="%" data-separator="true">0%</span></div>
+                    </div>
+                    <div class="cs-bar-track">
+                        <div class="cs-bar-before-fill" style="--bar-width:2%"></div>
+                        <div class="cs-bar-after-fill" style="--bar-width:100%"></div>
+                    </div>
+                    <div class="cs-bar-legend">
+                        <span><span class="dot-before"></span>Before: 2</span>
+                        <span><span class="dot-after"></span>After: 108</span>
+                    </div>
+                </div>
+
+                <!-- SERP Features -->
+                <div class="cs-bar-card fade-up">
+                    <div class="cs-bar-label">SERP Features</div>
+                    <div class="cs-bar-values">
+                        <div class="cs-bar-after"><span data-count="282">0</span></div>
+                        <div class="cs-bar-pct"><span data-count="571" data-prefix="+" data-suffix="%">0%</span></div>
+                    </div>
+                    <div class="cs-bar-track">
+                        <div class="cs-bar-before-fill" style="--bar-width:15%"></div>
+                        <div class="cs-bar-after-fill" style="--bar-width:100%"></div>
+                    </div>
+                    <div class="cs-bar-legend">
+                        <span><span class="dot-before"></span>Before: 42</span>
+                        <span><span class="dot-after"></span>After: 282</span>
+                    </div>
+                </div>
+
+                <!-- AI Audience Reach -->
+                <div class="cs-bar-card fade-up">
+                    <div class="cs-bar-label">AI Audience Reach</div>
+                    <div class="cs-bar-values">
+                        <div class="cs-bar-after">1M+</div>
+                        <div class="cs-bar-pct new-tag">New channel</div>
+                    </div>
+                    <div class="cs-bar-track">
+                        <div class="cs-bar-before-fill" style="--bar-width:0%"></div>
+                        <div class="cs-bar-after-fill" style="--bar-width:100%"></div>
+                    </div>
+                    <div class="cs-bar-legend">
+                        <span><span class="dot-before"></span>Before: 0</span>
+                        <span><span class="dot-after"></span>After: 1M+</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="case-study-cta fade-up">
                 <a href="#pricing">
                     Ready for results like these?
@@ -2441,17 +2640,22 @@
             document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
         }, 2000);
 
-        // ---- Case study count-up animation ----
+        // ---- Case study chart + count-up animation ----
         function formatNumber(n, separator, prefix, suffix) {
             let str = separator ? n.toLocaleString('en-US') : String(n);
             return (prefix || '') + str + (suffix || '');
         }
 
-        let caseStudyCounted = false;
+        let caseStudyFired = false;
         const caseStudyObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !caseStudyCounted) {
-                    caseStudyCounted = true;
+                if (entry.isIntersecting && !caseStudyFired) {
+                    caseStudyFired = true;
+
+                    // Trigger chart line draw + area fill + bar animations
+                    entry.target.classList.add('animated');
+
+                    // Animate all counters
                     document.querySelectorAll('[data-count]').forEach(el => {
                         const target = parseInt(el.dataset.count);
                         const prefix = el.dataset.prefix || '';
@@ -2472,7 +2676,7 @@
                     });
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.15 });
 
         const caseStudySection = document.querySelector('.case-study');
         if (caseStudySection) caseStudyObserver.observe(caseStudySection);
