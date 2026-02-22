@@ -1294,6 +1294,173 @@
         }
 
         /* ============================================
+           CASE STUDY / RESULTS
+           ============================================ */
+        .case-study {
+            padding: 120px 0;
+            background: #0B0F1A;
+            position: relative;
+            overflow: hidden;
+        }
+        .case-study::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(0,200,150,0.07) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+        .case-study::after {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0,200,150,0.08) 0%, rgba(26,115,232,0.04) 40%, transparent 70%);
+            pointer-events: none;
+        }
+        .case-study .section-label {
+            color: var(--color-accent);
+        }
+        .case-study .section-title {
+            color: #FFFFFF;
+        }
+        .case-study .section-subtitle {
+            color: rgba(255,255,255,0.55);
+        }
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 64px;
+            position: relative;
+            z-index: 1;
+        }
+        .case-study-header .section-subtitle {
+            margin: 0 auto;
+            max-width: 580px;
+        }
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .case-study-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+        .case-study-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,200,150,0.25);
+        }
+        .case-study-card-label {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 20px;
+        }
+        .case-study-numbers {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .case-study-before {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.3);
+            text-decoration: line-through;
+            text-decoration-color: rgba(255,255,255,0.15);
+        }
+        .case-study-arrow {
+            color: rgba(255,255,255,0.2);
+            font-size: 16px;
+        }
+        .case-study-after {
+            font-family: var(--font-heading);
+            font-size: 36px;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: -0.02em;
+        }
+        .case-study-growth {
+            display: inline-block;
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-shadow: 0 0 20px rgba(0,200,150,0.4), 0 0 40px rgba(0,200,150,0.15);
+            letter-spacing: -0.01em;
+        }
+        .case-study-growth.new-channel {
+            font-size: 22px;
+            background: linear-gradient(135deg, var(--color-accent), #00E5FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 12px rgba(0,200,150,0.3));
+        }
+        .case-study-cta {
+            text-align: center;
+            margin-top: 56px;
+            position: relative;
+            z-index: 1;
+        }
+        .case-study-cta a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-accent);
+            color: #0B0F1A;
+            padding: 14px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            font-family: var(--font-body);
+            box-shadow: 0 4px 24px rgba(0,200,150,0.3);
+        }
+        .case-study-cta a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 32px rgba(0,200,150,0.4);
+        }
+        .case-study-cta a svg {
+            width: 20px;
+            height: 20px;
+        }
+        .case-study-timeframe {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,200,150,0.1);
+            border: 1px solid rgba(0,200,150,0.2);
+            color: var(--color-accent);
+            padding: 5px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================
            RESPONSIVE
            ============================================ */
         @media (max-width: 968px) {
@@ -1310,6 +1477,9 @@
             .generator-info {
                 position: static;
             }
+            .case-study-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1320,6 +1490,10 @@
             .proof-stats { gap: 32px; }
             .steps-grid { grid-template-columns: 1fr; }
             .included-grid { grid-template-columns: 1fr; }
+            .case-study-grid { grid-template-columns: 1fr; }
+            .case-study { padding: 80px 0; }
+            .case-study-after { font-size: 28px; }
+            .case-study-growth { font-size: 22px; }
             .pricing-grid {
                 grid-template-columns: 1fr !important;
                 max-width: 400px;
@@ -1523,6 +1697,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#results">Results</a></li>
                 <li><a href="#generator">Generator</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -1676,6 +1851,83 @@
                     <h3>Mobile-Responsive HTML</h3>
                     <p>Production-ready code that works on Shopify, WordPress, Webflow, Wix — any platform.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDY / RESULTS ========== -->
+    <section class="case-study" id="results">
+        <div class="container">
+            <div class="case-study-header fade-up">
+                <div class="case-study-timeframe">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    5-Month Case Study
+                </div>
+                <div class="section-label">Proven Results</div>
+                <h2 class="section-title">Real Results. Real Brand. 5&nbsp;Months.</h2>
+                <p class="section-subtitle">Here's what happened when we turned on BloggedAi for an e&#8209;commerce skincare brand.</p>
+            </div>
+            <div class="case-study-grid">
+                <div class="case-study-card fade-up">
+                    <div class="case-study-card-label">Organic Traffic</div>
+                    <div class="case-study-numbers">
+                        <span class="case-study-before">296/mo</span>
+                        <span class="case-study-arrow">&rarr;</span>
+                        <span class="case-study-after"><span data-count="2354" data-suffix="/mo">0/mo</span></span>
+                    </div>
+                    <div class="case-study-growth"><span data-count="695" data-prefix="+" data-suffix="%">0%</span></div>
+                </div>
+                <div class="case-study-card fade-up">
+                    <div class="case-study-card-label">Top 3 Keywords</div>
+                    <div class="case-study-numbers">
+                        <span class="case-study-before">8</span>
+                        <span class="case-study-arrow">&rarr;</span>
+                        <span class="case-study-after"><span data-count="56">0</span></span>
+                    </div>
+                    <div class="case-study-growth"><span data-count="600" data-prefix="+" data-suffix="%">0%</span></div>
+                </div>
+                <div class="case-study-card fade-up">
+                    <div class="case-study-card-label">Total Rankings</div>
+                    <div class="case-study-numbers">
+                        <span class="case-study-before">627</span>
+                        <span class="case-study-arrow">&rarr;</span>
+                        <span class="case-study-after"><span data-count="1560" data-separator="true">0</span></span>
+                    </div>
+                    <div class="case-study-growth"><span data-count="149" data-prefix="+" data-suffix="%">0%</span></div>
+                </div>
+                <div class="case-study-card fade-up">
+                    <div class="case-study-card-label">AI Overviews</div>
+                    <div class="case-study-numbers">
+                        <span class="case-study-before">2</span>
+                        <span class="case-study-arrow">&rarr;</span>
+                        <span class="case-study-after"><span data-count="108">0</span></span>
+                    </div>
+                    <div class="case-study-growth"><span data-count="5300" data-prefix="+" data-suffix="%" data-separator="true">0%</span></div>
+                </div>
+                <div class="case-study-card fade-up">
+                    <div class="case-study-card-label">SERP Features</div>
+                    <div class="case-study-numbers">
+                        <span class="case-study-before">42</span>
+                        <span class="case-study-arrow">&rarr;</span>
+                        <span class="case-study-after"><span data-count="282">0</span></span>
+                    </div>
+                    <div class="case-study-growth"><span data-count="571" data-prefix="+" data-suffix="%">0%</span></div>
+                </div>
+                <div class="case-study-card fade-up">
+                    <div class="case-study-card-label">AI Audience Reach</div>
+                    <div class="case-study-numbers">
+                        <span class="case-study-before">0</span>
+                        <span class="case-study-arrow">&rarr;</span>
+                        <span class="case-study-after">1M+</span>
+                    </div>
+                    <div class="case-study-growth new-channel">New channel</div>
+                </div>
+            </div>
+            <div class="case-study-cta fade-up">
+                <a href="#generator">
+                    Ready for results like these?
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
             </div>
         </div>
     </section>
@@ -2129,6 +2381,42 @@
         setTimeout(() => {
             document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
         }, 2000);
+
+        // ---- Case study count-up animation ----
+        function formatNumber(n, separator, prefix, suffix) {
+            let str = separator ? n.toLocaleString('en-US') : String(n);
+            return (prefix || '') + str + (suffix || '');
+        }
+
+        let caseStudyCounted = false;
+        const caseStudyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !caseStudyCounted) {
+                    caseStudyCounted = true;
+                    document.querySelectorAll('[data-count]').forEach(el => {
+                        const target = parseInt(el.dataset.count);
+                        const prefix = el.dataset.prefix || '';
+                        const suffix = el.dataset.suffix || '';
+                        const useSep = el.dataset.separator === 'true';
+                        const duration = 2000;
+                        const start = performance.now();
+
+                        function tick(now) {
+                            const elapsed = now - start;
+                            const progress = Math.min(elapsed / duration, 1);
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.round(eased * target);
+                            el.textContent = formatNumber(current, useSep, prefix, suffix);
+                            if (progress < 1) requestAnimationFrame(tick);
+                        }
+                        requestAnimationFrame(tick);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const caseStudySection = document.querySelector('.case-study');
+        if (caseStudySection) caseStudyObserver.observe(caseStudySection);
 
         // ---- Toggle optional fields ----
         function toggleOptional() {
