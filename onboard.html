@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Up Your Account — BloggedAi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #FAFAF8;
+            color: #1A1A1A;
+            min-height: 100vh;
+            padding: 40px 24px 60px;
+        }
+        .wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .success-banner {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .success-icon {
+            width: 56px;
+            height: 56px;
+            background: #E8F5E9;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .success-icon svg { color: #00C896; }
+        .success-banner h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .success-banner p {
+            color: #5F6368;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .form-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            padding: 36px 32px;
+        }
+        .form-card h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .form-card .subtitle {
+            font-size: 14px;
+            color: #5F6368;
+            margin-bottom: 28px;
+        }
+        .form-section {
+            margin-bottom: 24px;
+        }
+        .form-section-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #9AA0A6;
+            margin-bottom: 14px;
+        }
+        .field {
+            margin-bottom: 16px;
+        }
+        .field:last-child { margin-bottom: 0; }
+        .field label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .field label .optional {
+            font-weight: 400;
+            color: #9AA0A6;
+            font-size: 12px;
+        }
+        .field label .required {
+            color: #E53935;
+        }
+        .field input[type="text"],
+        .field input[type="url"],
+        .field input[type="email"],
+        .field textarea,
+        .field select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid #E0DDD8;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            color: #1A1A1A;
+            background: #FAFAF8;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: #1A73E8;
+        }
+        .field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .field-row {
+            display: flex;
+            gap: 12px;
+        }
+        .field-row > .field { flex: 1; }
+        .field-hint {
+            font-size: 12px;
+            color: #9AA0A6;
+            margin-top: 4px;
+        }
+        .multi-input input {
+            margin-bottom: 8px;
+        }
+        .multi-input input:last-child { margin-bottom: 0; }
+        .add-more {
+            background: none;
+            border: none;
+            color: #1A73E8;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 4px 0;
+            margin-top: 6px;
+        }
+        .add-more:hover { text-decoration: underline; }
+        .advanced-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1A73E8;
+            background: none;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            padding: 12px 0;
+            margin-bottom: 8px;
+        }
+        .advanced-toggle svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.2s;
+        }
+        .advanced-toggle.open svg {
+            transform: rotate(180deg);
+        }
+        .advanced-section {
+            display: none;
+        }
+        .advanced-section.show {
+            display: block;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #EEEDEA;
+            margin: 24px 0;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: #1A73E8;
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+        .submit-btn:hover { background: #1557B0; }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .footer-note {
+            text-align: center;
+            font-size: 13px;
+            color: #9AA0A6;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .footer-note a { color: #9AA0A6; text-decoration: underline; }
+        .done-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            padding: 48px 32px;
+            text-align: center;
+            display: none;
+        }
+        .done-card.show { display: block; }
+        .done-card h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .done-card p {
+            color: #5F6368;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        .done-card .btn {
+            display: inline-block;
+            background: #1A73E8;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        @media (max-width: 600px) {
+            body { padding: 24px 16px 48px; }
+            .form-card, .success-banner { padding: 24px 20px; }
+            .field-row { flex-direction: column; gap: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="success-banner">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h1>Payment confirmed!</h1>
+            <p>Your Starter plan is active. Tell us about your business so we can start generating your 10 blogs.</p>
+        </div>
+
+        <div class="form-card" id="formCard">
+            <h2>Set up your account</h2>
+            <p class="subtitle">Only your website URL is required — everything else helps us write better blogs for you.</p>
+
+            <form id="onboardForm" onsubmit="submitOnboarding(event)">
+                <!-- ESSENTIALS -->
+                <div class="form-section">
+                    <div class="form-section-label">Essentials</div>
+
+                    <div class="field">
+                        <label>Website URL <span class="required">*</span></label>
+                        <input type="url" name="website_url" required placeholder="https://yourstore.com">
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Business Name <span class="optional">(optional)</span></label>
+                            <input type="text" name="business_name" placeholder="Your Brand Name">
+                        </div>
+                        <div class="field">
+                            <label>Industry <span class="optional">(optional)</span></label>
+                            <select name="industry">
+                                <option value="">Select your industry</option>
+                                <option value="skincare-beauty">Skincare & Beauty</option>
+                                <option value="health-wellness">Health & Wellness</option>
+                                <option value="fitness">Fitness</option>
+                                <option value="supplements-nutrition">Supplements & Nutrition</option>
+                                <option value="fashion">Fashion & Apparel</option>
+                                <option value="home-kitchen">Home & Kitchen</option>
+                                <option value="pet">Pet Products</option>
+                                <option value="parenting-baby">Parenting & Baby</option>
+                                <option value="food-beverage">Food & Beverage</option>
+                                <option value="jewelry">Jewelry & Accessories</option>
+                                <option value="tech-gadgets">Tech & Gadgets</option>
+                                <option value="outdoors-adventure">Outdoors & Adventure</option>
+                                <option value="automotive">Automotive & Parts</option>
+                                <option value="home-improvement">Home Improvement</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="coaching">Coaching & Consulting</option>
+                                <option value="software">SaaS & Software</option>
+                                <option value="agency">Marketing & Agency</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AUDIENCE & VOICE -->
+                <div class="form-section">
+                    <div class="form-section-label">Audience & Voice</div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Target Gender <span class="optional">(optional)</span></label>
+                            <select name="target_gender">
+                                <option value="">Select</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                                <option value="all">All / Unisex</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Audience Age <span class="optional">(optional)</span></label>
+                            <select name="audience_age">
+                                <option value="">Select</option>
+                                <option value="18-24">18–24</option>
+                                <option value="25-34">25–34</option>
+                                <option value="35-44">35–44</option>
+                                <option value="45-54">45–54</option>
+                                <option value="55+">55+</option>
+                                <option value="all">All Ages</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Brand Voice <span class="optional">(optional)</span></label>
+                        <select name="brand_voice">
+                            <option value="">How should your blogs sound?</option>
+                            <option value="professional">Professional & Authoritative</option>
+                            <option value="friendly">Friendly & Conversational</option>
+                            <option value="bold">Bold & Direct</option>
+                            <option value="luxury">Luxury & Refined</option>
+                            <option value="playful">Playful & Fun</option>
+                            <option value="educational">Educational & Informative</option>
+                            <option value="inspirational">Inspirational & Empowering</option>
+                            <option value="technical">Technical & Data-Driven</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- ADVANCED TOGGLE -->
+                <button type="button" class="advanced-toggle" onclick="toggleAdvanced()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    Advanced Options — products, images, links & keywords
+                </button>
+
+                <div class="advanced-section" id="advancedSection">
+                    <!-- KEYWORDS -->
+                    <div class="form-section">
+                        <div class="form-section-label">Keywords</div>
+                        <div class="field">
+                            <label>Target Keywords <span class="optional">(optional)</span></label>
+                            <textarea name="keywords" placeholder="Enter keywords separated by commas, e.g.&#10;best tallow skincare, beef tallow moisturizer, natural face cream"></textarea>
+                            <div class="field-hint">We'll research keywords for you if left blank.</div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCT URLS -->
+                    <div class="form-section">
+                        <div class="form-section-label">Product / Page URLs</div>
+                        <div class="field">
+                            <label>Product URLs <span class="optional">(optional — we'll link to these in your blogs)</span></label>
+                            <div class="multi-input" id="productUrls">
+                                <input type="url" name="product_url_1" placeholder="https://yourstore.com/products/your-product">
+                                <input type="url" name="product_url_2" placeholder="Product URL 2">
+                            </div>
+                            <button type="button" class="add-more" onclick="addField('productUrls', 'product_url', 'Product URL', 10)">+ Add another product</button>
+                        </div>
+                    </div>
+
+                    <!-- IMAGES -->
+                    <div class="form-section">
+                        <div class="form-section-label">Brand Images</div>
+                        <div class="field">
+                            <label>Image URLs <span class="optional">(optional — product or brand images from your site)</span></label>
+                            <div class="multi-input" id="imageUrls">
+                                <input type="url" name="image_url_1" placeholder="https://cdn.shopify.com/.../image.jpg">
+                                <input type="url" name="image_url_2" placeholder="Image URL 2">
+                            </div>
+                            <button type="button" class="add-more" onclick="addField('imageUrls', 'image_url', 'Image URL', 10)">+ Add another image</button>
+                            <div class="field-hint">We'll generate hero images and use Unsplash if left blank.</div>
+                        </div>
+                    </div>
+
+                    <!-- VIDEOS -->
+                    <div class="form-section">
+                        <div class="form-section-label">Videos</div>
+                        <div class="field">
+                            <label>Video URLs <span class="optional">(optional — YouTube or Vimeo)</span></label>
+                            <div class="multi-input" id="videoUrls">
+                                <input type="url" name="video_url_1" placeholder="https://youtube.com/watch?v=...">
+                            </div>
+                            <button type="button" class="add-more" onclick="addField('videoUrls', 'video_url', 'Video URL', 5)">+ Add another video</button>
+                        </div>
+                    </div>
+
+                    <!-- INTERNAL LINKS -->
+                    <div class="form-section">
+                        <div class="form-section-label">Internal Links</div>
+                        <div class="field">
+                            <label>Pages to link to <span class="optional">(optional — collections, about page, etc.)</span></label>
+                            <div class="multi-input" id="internalLinks">
+                                <input type="url" name="internal_link_1" placeholder="https://yourstore.com/collections/all">
+                                <input type="url" name="internal_link_2" placeholder="Internal link 2">
+                            </div>
+                            <button type="button" class="add-more" onclick="addField('internalLinks', 'internal_link', 'Internal link', 10)">+ Add another link</button>
+                        </div>
+                    </div>
+
+                    <!-- SPECIAL INSTRUCTIONS -->
+                    <div class="form-section">
+                        <div class="form-section-label">Anything Else</div>
+                        <div class="field">
+                            <label>Special Instructions <span class="optional">(optional)</span></label>
+                            <textarea name="instructions" placeholder="Anything specific about your brand, products, or content style you'd like us to know..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="email" id="onboardEmail">
+                <input type="hidden" name="plan" value="starter">
+
+                <button type="submit" class="submit-btn" id="submitBtn">Save & Start My Blogs</button>
+            </form>
+
+            <div class="footer-note">
+                Questions? Email <a href="mailto:matthew@foundingengine.com">matthew@foundingengine.com</a>
+            </div>
+        </div>
+
+        <!-- DONE STATE -->
+        <div class="done-card" id="doneCard">
+            <div class="success-icon" style="display:inline-flex;margin-bottom:16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#00C896;"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h2>You're all set!</h2>
+            <p>We have everything we need. Your 10 blogs will be delivered within 24 hours. Check your email for updates.</p>
+            <a href="https://www.bloggedai.com" class="btn">Back to BloggedAi</a>
+        </div>
+    </div>
+
+    <script>
+        // Pre-fill email from URL param if present
+        const params = new URLSearchParams(window.location.search);
+        const sessionEmail = params.get('email');
+        if (sessionEmail) {
+            document.getElementById('onboardEmail').value = sessionEmail;
+        }
+
+        function toggleAdvanced() {
+            const section = document.getElementById('advancedSection');
+            const toggle = document.querySelector('.advanced-toggle');
+            section.classList.toggle('show');
+            toggle.classList.toggle('open');
+        }
+
+        let fieldCounters = {};
+        function addField(containerId, namePrefix, placeholder, max) {
+            const container = document.getElementById(containerId);
+            const count = container.querySelectorAll('input').length;
+            if (count >= max) return;
+            const input = document.createElement('input');
+            input.type = 'url';
+            input.name = `${namePrefix}_${count + 1}`;
+            input.placeholder = `${placeholder} ${count + 1}`;
+            container.appendChild(input);
+        }
+
+        async function submitOnboarding(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = document.getElementById('submitBtn');
+            const formData = new FormData(form);
+            const data = {};
+
+            // Collect all fields, group multi-inputs into arrays
+            const arrays = {};
+            for (const [key, value] of formData.entries()) {
+                const match = key.match(/^(.+)_(\d+)$/);
+                if (match && (key.startsWith('product_url') || key.startsWith('image_url') || key.startsWith('video_url') || key.startsWith('internal_link'))) {
+                    const base = match[1];
+                    if (!arrays[base]) arrays[base] = [];
+                    if (value.trim()) arrays[base].push(value.trim());
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Add arrays as JSON strings
+            if (arrays.product_url?.length) data.product_urls = arrays.product_url;
+            if (arrays.image_url?.length) data.image_urls = arrays.image_url;
+            if (arrays.video_url?.length) data.video_urls = arrays.video_url;
+            if (arrays.internal_link?.length) data.internal_links = arrays.internal_link;
+
+            btn.disabled = true;
+            btn.textContent = 'Saving...';
+
+            try {
+                const resp = await fetch('https://api.bloggedai.com/api/save-onboarding', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(data)
+                });
+                const result = await resp.json();
+                if (result.success) {
+                    document.getElementById('formCard').style.display = 'none';
+                    document.getElementById('doneCard').classList.add('show');
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                } else {
+                    alert(result.error || 'Something went wrong. Please try again.');
+                    btn.disabled = false;
+                    btn.textContent = 'Save & Start My Blogs';
+                }
+            } catch {
+                alert('Something went wrong. Please try again.');
+                btn.disabled = false;
+                btn.textContent = 'Save & Start My Blogs';
+            }
+        }
+    </script>
+</body>
+</html>
