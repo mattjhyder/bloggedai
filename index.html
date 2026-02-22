@@ -2647,6 +2647,16 @@
                 }
 
                 if (!response.ok) {
+                    if (response.status === 403 && result.used) {
+                        // Email already used — show friendly message, not an error
+                        loading.classList.remove('active');
+                        resetSteps();
+                        showToast('You\u2019ve already claimed your free blog!');
+                        setTimeout(() => {
+                            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+                        }, 1500);
+                        return;
+                    }
                     throw new Error(result.error || 'Blog generation failed');
                 }
 
