@@ -2761,29 +2761,42 @@
             btn.disabled = true;
             btn.textContent = 'Redirecting...';
 
+            const checkoutController = new AbortController();
+            const checkoutTimeout = setTimeout(() => checkoutController.abort(), 30000);
+
             try {
                 const resp = await fetch('https://api.bloggedai.com/api/create-checkout', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
+                    signal: checkoutController.signal
                 });
+                clearTimeout(checkoutTimeout);
+                if (!resp.ok) {
+                    let errorMsg = 'Something went wrong';
+                    try { const r = await resp.json(); errorMsg = r.error || errorMsg; } catch {}
+                    throw new Error(errorMsg);
+                }
                 const result = await resp.json();
                 if (result.url) {
                     window.location.href = result.url;
                 } else {
-                    alert(result.error || 'Something went wrong');
-                    btn.disabled = false;
-                    btn.textContent = 'Continue to Checkout';
+                    throw new Error(result.error || 'No checkout URL received');
                 }
-            } catch {
-                alert('Something went wrong. Please try again.');
+            } catch (err) {
+                clearTimeout(checkoutTimeout);
                 btn.disabled = false;
                 btn.textContent = 'Continue to Checkout';
+                if (err.name === 'AbortError') {
+                    showToast('Request timed out. Please try again.');
+                } else {
+                    showToast(err.message || 'Something went wrong. Please try again.');
+                }
             }
         }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeCheckout();
+            if (e.key === 'Escape') { closeCheckout(); closeResults(); }
         });
 
         // ---- Form submission ----
@@ -2995,6 +3008,16 @@
 
         function copyHtml() {
             navigator.clipboard.writeText(generatedHtml).then(() => {
+                showToast('HTML copied to clipboard!');
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = generatedHtml;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
                 showToast('HTML copied to clipboard!');
             });
         }
