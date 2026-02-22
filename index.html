@@ -1715,7 +1715,7 @@
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Ready-to-publish HTML delivered</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> One-time purchase</li>
                     </ul>
-                    <a href="#generator" class="btn-pricing btn-pricing-outline">Get Started</a>
+                    <a onclick="startCheckout('starter')" class="btn-pricing btn-pricing-outline" style="cursor:pointer;">Get Started</a>
                 </div>
 
                 <div class="pricing-card featured">
@@ -1731,7 +1731,7 @@
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Keyword cluster strategy</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Priority support</li>
                     </ul>
-                    <a href="#generator" class="btn-pricing btn-pricing-fill">Scale with Growth</a>
+                    <a onclick="startCheckout('growth')" class="btn-pricing btn-pricing-fill" style="cursor:pointer;">Scale with Growth</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1746,7 +1746,7 @@
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Monthly reports & Google Search Console</li>
                         <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Content syndication & backlinks</li>
                     </ul>
-                    <a href="#generator" class="btn-pricing btn-pricing-outline">Dominate Your Niche</a>
+                    <a onclick="startCheckout('dominate')" class="btn-pricing btn-pricing-outline" style="cursor:pointer;">Dominate Your Niche</a>
                 </div>
             </div>
             <p style="text-align:center; margin-top:32px; font-size:14px; color:var(--color-text-tertiary);">No contracts · Cancel anytime · Growth & Dominate include dedicated rep + professional install</p>
@@ -1958,6 +1958,22 @@
         function toggleFaq(btn) {
             const item = btn.parentElement;
             item.classList.toggle('open');
+        }
+
+        // ---- Stripe checkout ----
+        async function startCheckout(plan) {
+            const email = prompt('Enter your email to continue:');
+            if (!email) return;
+            try {
+                const resp = await fetch('https://api.bloggedai.com/api/create-checkout', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, plan})
+                });
+                const data = await resp.json();
+                if (data.url) window.location.href = data.url;
+                else alert(data.error || 'Something went wrong');
+            } catch { alert('Something went wrong. Please try again.'); }
         }
 
         // ---- Form submission ----
