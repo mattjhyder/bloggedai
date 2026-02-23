@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
     <link rel="canonical" href="https://www.bloggedai.com/">
-    <link rel="alternate" type="application/rss+xml" title="SEO x AI Discovery Lab — BloggedAi" href="https://api.bloggedai.com/blog/seo-ai-discovery-lab/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="SEO x AI Discovery Lab — BloggedAi" href="https://www.bloggedai.com/blog/seo-ai-discovery-lab/feed.xml">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,7 +36,7 @@
       "logo": "https://www.bloggedai.com/og-image.png",
       "description": "AI-powered SEO blog generation for e-commerce businesses.",
       "founder": {"@type": "Person", "name": "Matt Hyder"},
-      "sameAs": ["https://api.bloggedai.com/blog"]
+      "sameAs": ["https://www.bloggedai.com/blog"]
     }
     </script>
     <script type="application/ld+json">
@@ -1437,6 +1437,78 @@
         .case-study .section-label { color: var(--color-accent); }
         .case-study .section-title { color: #FFFFFF; }
         .case-study .section-subtitle { color: rgba(255,255,255,0.55); }
+
+        /* ── Video Case Study ── */
+        .video-case-study {
+            padding: 100px 0;
+            background: #080C16;
+            position: relative;
+            overflow: hidden;
+        }
+        .video-case-study::before {
+            content: '';
+            position: absolute;
+            top: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(0,200,150,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .video-case-study .section-label { color: var(--color-accent); }
+        .video-case-study .section-title { color: #FFFFFF; }
+        .video-case-study .section-subtitle { color: rgba(255,255,255,0.55); max-width: 620px; margin: 0 auto; }
+        .video-case-study-header {
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            z-index: 1;
+        }
+        .video-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto 36px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+        }
+        .video-wrapper iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            display: block;
+            border: 0;
+        }
+        .video-client-link {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .video-client-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-accent);
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid rgba(0,200,150,0.25);
+            border-radius: 100px;
+            background: rgba(0,200,150,0.06);
+            transition: all 0.3s ease;
+        }
+        .video-client-link a:hover {
+            background: rgba(0,200,150,0.12);
+            border-color: rgba(0,200,150,0.4);
+            transform: translateY(-2px);
+        }
+        .video-client-link a svg {
+            width: 16px;
+            height: 16px;
+        }
         .case-study-header {
             text-align: center;
             margin-bottom: 56px;
@@ -1965,7 +2037,7 @@
                 <li><a href="#generator">Generator</a></li>
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="https://api.bloggedai.com/blog">Blog</a></li>
+                <li><a href="https://www.bloggedai.com/blog">Blog</a></li>
                 <li><a href="#generator" class="nav-cta">Get Free Blog</a></li>
             </ul>
             <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
@@ -2349,7 +2421,7 @@
                 <p class="section-subtitle">Real blogs generated in under 3 minutes. Click to read the full post.</p>
             </div>
             <div class="examples-grid">
-                <a href="https://api.bloggedai.com/blog/oval-engagement-rings" target="_blank" rel="noopener" class="example-card fade-up">
+                <a href="https://www.bloggedai.com/blog/oval-engagement-rings" target="_blank" rel="noopener" class="example-card fade-up">
                     <img src="https://api.bloggedai.com/images/20260221-125306_oval-engagement-rings.jpg" alt="Oval engagement rings guide" loading="lazy">
                     <div class="example-card-body">
                         <span class="example-tag">Jewelry</span>
@@ -2358,7 +2430,7 @@
                         <span class="example-card-link">Read full blog &rarr;</span>
                     </div>
                 </a>
-                <a href="https://api.bloggedai.com/blog/best-dog-food-for-french-bulldogs" target="_blank" rel="noopener" class="example-card fade-up">
+                <a href="https://www.bloggedai.com/blog/best-dog-food-for-french-bulldogs" target="_blank" rel="noopener" class="example-card fade-up">
                     <img src="https://api.bloggedai.com/images/20260222-092355_best-dog-food-for-french-bulldogs.jpg" alt="Best dog food for french bulldogs" loading="lazy">
                     <div class="example-card-body">
                         <span class="example-tag">Pet</span>
@@ -2367,7 +2439,7 @@
                         <span class="example-card-link">Read full blog &rarr;</span>
                     </div>
                 </a>
-                <a href="https://api.bloggedai.com/blog/skincare-routine-for-textured-skin" target="_blank" rel="noopener" class="example-card fade-up">
+                <a href="https://www.bloggedai.com/blog/skincare-routine-for-textured-skin" target="_blank" rel="noopener" class="example-card fade-up">
                     <img src="https://api.bloggedai.com/images/20260222-092412_when-to-use-toner-in-skincare-routine.jpg" alt="Skincare routine guide" loading="lazy">
                     <div class="example-card-body">
                         <span class="example-tag">Skincare</span>
@@ -2376,7 +2448,7 @@
                         <span class="example-card-link">Read full blog &rarr;</span>
                     </div>
                 </a>
-                <a href="https://api.bloggedai.com/blog/best-tricep-exercises-for-women" target="_blank" rel="noopener" class="example-card fade-up">
+                <a href="https://www.bloggedai.com/blog/best-tricep-exercises-for-women" target="_blank" rel="noopener" class="example-card fade-up">
                     <img src="https://api.bloggedai.com/images/20260222-092344_best-tricep-exercises-for-women.jpg" alt="Best tricep exercises for women" loading="lazy">
                     <div class="example-card-body">
                         <span class="example-tag">Fitness</span>
@@ -2385,7 +2457,7 @@
                         <span class="example-card-link">Read full blog &rarr;</span>
                     </div>
                 </a>
-                <a href="https://api.bloggedai.com/blog/best-kitchen-gadgets-for-healthy-eating" target="_blank" rel="noopener" class="example-card fade-up">
+                <a href="https://www.bloggedai.com/blog/best-kitchen-gadgets-for-healthy-eating" target="_blank" rel="noopener" class="example-card fade-up">
                     <img src="https://api.bloggedai.com/images/20260222-092429_best-kitchen-gadgets-for-healthy-eating.jpg" alt="Best kitchen gadgets for healthy eating" loading="lazy">
                     <div class="example-card-body">
                         <span class="example-tag">Tech</span>
@@ -2394,7 +2466,7 @@
                         <span class="example-card-link">Read full blog &rarr;</span>
                     </div>
                 </a>
-                <a href="https://api.bloggedai.com/blog/ecommerce-marketing-services" target="_blank" rel="noopener" class="example-card fade-up">
+                <a href="https://www.bloggedai.com/blog/ecommerce-marketing-services" target="_blank" rel="noopener" class="example-card fade-up">
                     <img src="https://api.bloggedai.com/images/20260221-130332_ecommerce-marketing-services.jpg" alt="Ecommerce marketing services guide" loading="lazy">
                     <div class="example-card-body">
                         <span class="example-tag">Agency</span>
@@ -2564,6 +2636,26 @@
         </div>
     </section>
 
+    <!-- ========== VIDEO CASE STUDY ========== -->
+    <section class="video-case-study">
+        <div class="container">
+            <div class="video-case-study-header fade-up">
+                <div class="section-label">See It In Action</div>
+                <h2 class="section-title">Watch BloggedAi Build a Real Client's Blog</h2>
+                <p class="section-subtitle">See how we helped D&eacute;rvo, a Greek skincare brand, generate schema-rich, AI-discoverable blog content that ranks.</p>
+            </div>
+            <div class="video-wrapper fade-up">
+                <iframe src="https://www.youtube.com/embed/zwnKrSPPWjQ" title="BloggedAi Case Study — Dérvo Skincare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-client-link fade-up">
+                <a href="https://dervoskin.com/blogs/greek-skincare-mythos" target="_blank" rel="noopener">
+                    See D&eacute;rvo's live blog
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== PRICING (POST-RESULTS) ========== -->
     <section class="pricing" id="pricing">
         <div class="container">
@@ -2701,7 +2793,7 @@
             <ul class="footer-links">
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
-                <li><a href="https://api.bloggedai.com/blog">Blog</a></li>
+                <li><a href="https://www.bloggedai.com/blog">Blog</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>
             <div class="footer-credit">
