@@ -1438,42 +1438,24 @@
         .case-study .section-title { color: #FFFFFF; }
         .case-study .section-subtitle { color: rgba(255,255,255,0.55); }
 
-        /* ── Video Case Study ── */
-        .video-case-study {
-            padding: 100px 0;
-            background: #080C16;
-            position: relative;
-            overflow: hidden;
-        }
-        .video-case-study::before {
-            content: '';
-            position: absolute;
-            top: -300px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 900px;
-            background: radial-gradient(circle, rgba(0,200,150,0.06) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .video-case-study .section-label { color: var(--color-accent); }
-        .video-case-study .section-title { color: #FFFFFF; }
-        .video-case-study .section-subtitle { color: rgba(255,255,255,0.55); max-width: 620px; margin: 0 auto; }
-        .video-case-study-header {
+        /* ── How It Works Video ── */
+        .hiw-video {
+            margin-top: 64px;
             text-align: center;
-            margin-bottom: 48px;
-            position: relative;
-            z-index: 1;
+        }
+        .hiw-video-caption {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-muted);
+            margin-bottom: 20px;
         }
         .video-wrapper {
-            position: relative;
-            z-index: 1;
             max-width: 800px;
-            margin: 0 auto 36px;
+            margin: 0 auto 28px;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.12);
         }
         .video-wrapper iframe {
             width: 100%;
@@ -1483,8 +1465,6 @@
         }
         .video-client-link {
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
         .video-client-link a {
             display: inline-flex;
@@ -1494,15 +1474,15 @@
             font-size: 15px;
             font-weight: 600;
             text-decoration: none;
-            padding: 12px 24px;
-            border: 1px solid rgba(0,200,150,0.25);
+            padding: 10px 22px;
+            border: 1px solid rgba(0,200,150,0.2);
             border-radius: 100px;
-            background: rgba(0,200,150,0.06);
+            background: rgba(0,200,150,0.04);
             transition: all 0.3s ease;
         }
         .video-client-link a:hover {
-            background: rgba(0,200,150,0.12);
-            border-color: rgba(0,200,150,0.4);
+            background: rgba(0,200,150,0.1);
+            border-color: rgba(0,200,150,0.35);
             transform: translateY(-2px);
         }
         .video-client-link a svg {
@@ -2134,6 +2114,20 @@
                     <p>Preview the blog live. Copy the HTML or download the file. Paste it into your site and start climbing the SERPs.</p>
                 </div>
             </div>
+
+            <!-- Video walkthrough -->
+            <div class="hiw-video fade-up">
+                <p class="hiw-video-caption">Watch us build a real client's blog in action</p>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/zwnKrSPPWjQ" title="BloggedAi Case Study — Dérvo Skincare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="video-client-link">
+                    <a href="https://dervoskin.com/blogs/greek-skincare-mythos" target="_blank" rel="noopener">
+                        See D&eacute;rvo's live blog
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2631,26 +2625,6 @@
                 <a href="#pricing">
                     Ready for results like these?
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== VIDEO CASE STUDY ========== -->
-    <section class="video-case-study">
-        <div class="container">
-            <div class="video-case-study-header fade-up">
-                <div class="section-label">See It In Action</div>
-                <h2 class="section-title">Watch BloggedAi Build a Real Client's Blog</h2>
-                <p class="section-subtitle">See how we helped D&eacute;rvo, a Greek skincare brand, generate schema-rich, AI-discoverable blog content that ranks.</p>
-            </div>
-            <div class="video-wrapper fade-up">
-                <iframe src="https://www.youtube.com/embed/zwnKrSPPWjQ" title="BloggedAi Case Study — Dérvo Skincare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-client-link fade-up">
-                <a href="https://dervoskin.com/blogs/greek-skincare-mythos" target="_blank" rel="noopener">
-                    See D&eacute;rvo's live blog
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                 </a>
             </div>
         </div>
