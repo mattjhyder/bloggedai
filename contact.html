@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C61KLZYTFR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-C61KLZYTFR');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — BloggedAi</title>
+    <meta name="description" content="Get in touch with the BloggedAi team. Questions about automated SEO blogs? We'd love to hear from you.">
+    <link rel="canonical" href="https://www.bloggedai.com/contact.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAFAF8;
+            --color-surface: #FFFFFF;
+            --color-surface-alt: #F3F1EE;
+            --color-primary: #1A73E8;
+            --color-primary-dark: #1557B0;
+            --color-primary-light: #E8F0FE;
+            --color-accent: #00C896;
+            --color-text: #1A1A1A;
+            --color-text-secondary: #5F6368;
+            --color-text-tertiary: #9AA0A6;
+            --color-border: #E0DDD8;
+            --color-border-light: #EEEDEA;
+            --color-success: #00C896;
+            --font-heading: 'Fraunces', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.05), 0 2px 4px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(250, 250, 248, 0.85);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border-light);
+            transition: box-shadow 0.3s ease;
+        }
+        .nav.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-inner {
+            max-width: 1180px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between; height: 64px;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--color-text);
+        }
+        .nav-logo-icon {
+            width: 36px; height: 36px; background: var(--color-primary);
+            border-radius: var(--radius-sm); display: flex; align-items: center;
+            justify-content: center; color: white; font-family: var(--font-heading);
+            font-weight: 700; font-size: 18px;
+        }
+        .nav-logo-text {
+            font-family: var(--font-heading); font-weight: 700; font-size: 22px;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo-text span { color: var(--color-primary); }
+        .nav-links {
+            display: flex; align-items: center; gap: 32px; list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none; color: var(--color-text-secondary);
+            font-size: 14px; font-weight: 500; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--color-text); }
+        .nav-cta {
+            background: var(--color-primary) !important; color: white !important;
+            padding: 8px 20px; border-radius: 100px; font-weight: 600 !important;
+            transition: background 0.2s, transform 0.2s !important;
+        }
+        .nav-cta:hover {
+            background: var(--color-primary-dark) !important; transform: translateY(-1px);
+        }
+        .nav-mobile-toggle {
+            display: none; background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .nav-mobile-toggle span {
+            display: block; width: 22px; height: 2px; background: var(--color-text);
+            margin: 5px 0; transition: 0.3s; border-radius: 2px;
+        }
+
+        /* PAGE CONTENT */
+        .contact-section {
+            padding: 140px 0 80px;
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1180px; margin: 0 auto; padding: 0 24px;
+        }
+        .contact-wrapper {
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .contact-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .contact-header h1 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .contact-header p {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+        }
+
+        /* FORM CARD */
+        .form-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block; font-size: 14px; font-weight: 600;
+            margin-bottom: 6px; color: var(--color-text);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%; padding: 12px 16px;
+            border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+            font-size: 16px; font-family: var(--font-body);
+            background: var(--color-bg); color: var(--color-text);
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+            -webkit-appearance: none; appearance: none;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+            line-height: 1.5;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(26,115,232,0.12);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--color-text-tertiary);
+        }
+        .btn-generate {
+            width: 100%; padding: 16px;
+            background: var(--color-primary); color: white; border: none;
+            border-radius: var(--radius-sm); font-size: 16px; font-weight: 600;
+            font-family: var(--font-body); cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 16px rgba(26,115,232,0.3);
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-generate:hover {
+            background: var(--color-primary-dark); transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(26,115,232,0.35);
+        }
+        .btn-generate:disabled {
+            opacity: 0.7; cursor: not-allowed; transform: none;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed; bottom: 24px; right: 24px;
+            background: var(--color-text); color: white;
+            padding: 14px 24px; border-radius: var(--radius-sm);
+            font-size: 14px; font-weight: 500; box-shadow: var(--shadow-lg);
+            z-index: 3000; transform: translateY(100px); opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.error { background: #D93025; }
+
+        /* FOOTER */
+        .footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--color-border-light);
+        }
+        .footer-inner {
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--color-text);
+        }
+        .footer-logo .nav-logo-icon { width: 28px; height: 28px; font-size: 14px; }
+        .footer-logo-text {
+            font-family: var(--font-heading); font-weight: 600; font-size: 16px;
+        }
+        .footer-links {
+            display: flex; gap: 24px; list-style: none;
+        }
+        .footer-links a {
+            font-size: 14px; color: var(--color-text-tertiary);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--color-text); }
+        .footer-credit {
+            font-size: 13px; color: var(--color-text-tertiary);
+        }
+        .footer-credit a {
+            color: var(--color-text-secondary); text-decoration: none;
+        }
+        .footer-credit a:hover { color: var(--color-primary); }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.show {
+                display: flex; flex-direction: column; position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: rgba(250, 250, 248, 0.98);
+                backdrop-filter: blur(20px); padding: 16px 24px; gap: 4px;
+                border-bottom: 1px solid var(--color-border-light);
+                box-shadow: var(--shadow-md); z-index: 100;
+            }
+            .nav-links.show a { padding: 12px 0; font-size: 16px; }
+            .nav-links.show .nav-cta {
+                text-align: center; display: block; padding: 12px 20px; margin-top: 8px;
+            }
+            .nav-mobile-toggle { display: block; }
+            .contact-section { padding: 100px 0 60px; }
+            .form-card { padding: 28px 20px; }
+            .contact-header h1 { font-size: 26px; }
+            .footer-inner {
+                flex-direction: column; gap: 20px; text-align: center;
+            }
+            .toast { right: 16px; left: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">
+                <div class="nav-logo-icon">B</div>
+                <div class="nav-logo-text">Blogged<span>Ai</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/#how-it-works">How It Works</a></li>
+                <li><a href="/#results">Results</a></li>
+                <li><a href="/#generator">Generator</a></li>
+                <li><a href="/#pricing">Pricing</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/#generator" class="nav-cta">Get Free Blog</a></li>
+            </ul>
+            <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ========== CONTACT FORM ========== -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-header">
+                    <h1>Get in touch</h1>
+                    <p>Have a question or want to learn more? Drop us a message and we'll get back to you shortly.</p>
+                </div>
+                <div class="form-card">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-generate" id="submitBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <a href="/" class="footer-logo">
+                <div class="nav-logo-icon">B</div>
+                <span class="footer-logo-text">BloggedAi</span>
+            </a>
+            <ul class="footer-links">
+                <li><a href="/#pricing">Pricing</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="footer-credit">
+                Built by <a href="https://foundingengine.com" target="_blank" rel="noopener">Founding Engine</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+        });
+
+        // Toast helper
+        function showToast(msg, isError) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.toggle('error', !!isError);
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 4000);
+        }
+
+        // Form submit
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                showToast('Please fill in all fields.', true);
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<svg style="width:20px;height:20px;animation:spin 1s linear infinite" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending...';
+
+            try {
+                const resp = await fetch('https://api.bloggedai.com/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, message })
+                });
+                const data = await resp.json();
+                if (resp.ok && data.success) {
+                    showToast("Message sent! We'll get back to you soon.");
+                    document.getElementById('contactForm').reset();
+                } else {
+                    showToast(data.error || 'Something went wrong. Please try again.', true);
+                }
+            } catch (err) {
+                showToast('Network error. Please try again.', true);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+            }
+        });
+    </script>
+</body>
+</html>
