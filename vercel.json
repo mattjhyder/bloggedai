@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/blog", "destination": "https://api.bloggedai.com/blog" },
+    { "source": "/blog/", "destination": "https://api.bloggedai.com/blog/" },
+    { "source": "/blog/:path*", "destination": "https://api.bloggedai.com/blog/:path*" },
+    { "source": "/sitemap.xml", "destination": "https://api.bloggedai.com/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "https://api.bloggedai.com/robots.txt" },
+    { "source": "/feed.xml", "destination": "https://api.bloggedai.com/feed.xml" },
+    { "source": "/llms.txt", "destination": "https://api.bloggedai.com/llms.txt" },
+    { "source": "/llms-full.txt", "destination": "https://api.bloggedai.com/llms-full.txt" },
+    { "source": "/images/:path*", "destination": "https://api.bloggedai.com/images/:path*" },
+    { "source": "/static/:path*", "destination": "https://api.bloggedai.com/static/:path*" }
+  ]
+}
