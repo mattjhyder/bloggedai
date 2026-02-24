@@ -1,6 +1,8 @@
 {
+  "redirects": [
+    { "source": "/blog", "destination": "/blog/", "permanent": false }
+  ],
   "rewrites": [
-    { "source": "/blog", "destination": "https://api.bloggedai.com/blog" },
     { "source": "/blog/", "destination": "https://api.bloggedai.com/blog/" },
     { "source": "/blog/:path*", "destination": "https://api.bloggedai.com/blog/:path*" },
     { "source": "/sitemap.xml", "destination": "https://api.bloggedai.com/sitemap.xml" },
