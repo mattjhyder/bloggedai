@@ -1352,6 +1352,91 @@
         }
 
         /* ============================================
+           EMAIL SUBSCRIBE SECTION
+           ============================================ */
+        .subscribe-section {
+            padding: 80px 0;
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border-light);
+        }
+        .subscribe-inner {
+            text-align: center;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .subscribe-inner .section-title {
+            margin-bottom: 12px;
+            font-size: 28px;
+        }
+        .subscribe-inner p {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .subscribe-form {
+            display: flex;
+            gap: 10px;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+        .subscribe-form input[type="email"] {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            font-size: 15px;
+            font-family: inherit;
+            background: var(--color-surface);
+            color: var(--color-text);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .subscribe-form input[type="email"]:focus {
+            border-color: var(--color-primary);
+        }
+        .subscribe-form input[type="email"]::placeholder {
+            color: var(--color-text-tertiary);
+        }
+        .subscribe-form button {
+            padding: 14px 28px;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .subscribe-form button:hover {
+            background: var(--color-primary-dark);
+        }
+        .subscribe-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .subscribe-msg {
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--color-success);
+            min-height: 20px;
+        }
+        .subscribe-msg.error {
+            color: #e74c3c;
+        }
+        @media (max-width: 600px) {
+            .subscribe-form {
+                flex-direction: column;
+            }
+            .subscribe-form button {
+                width: 100%;
+            }
+        }
+
+        /* ============================================
            FOOTER
            ============================================ */
         .footer {
@@ -2759,6 +2844,21 @@
         </div>
     </section>
 
+    <!-- ========== EMAIL SUBSCRIBE ========== -->
+    <section class="subscribe-section">
+        <div class="container">
+            <div class="subscribe-inner">
+                <h2 class="section-title">Stay in the loop</h2>
+                <p>SEO tips, product updates, and insights on AI-powered search — straight to your inbox.</p>
+                <form class="subscribe-form" id="subscribeForm" onsubmit="return handleSubscribe(event)">
+                    <input type="email" name="email" placeholder="you@company.com" required>
+                    <button type="submit" id="subscribeBtn">Subscribe</button>
+                </form>
+                <div class="subscribe-msg" id="subscribeMsg"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
         <div class="container footer-inner">
@@ -3288,6 +3388,45 @@
 
         // ---- Attach form handler ----
         document.getElementById('blogForm').addEventListener('submit', handleSubmit);
+
+        // ---- Email subscribe ----
+        async function handleSubscribe(e) {
+            e.preventDefault();
+            const form = document.getElementById('subscribeForm');
+            const btn = document.getElementById('subscribeBtn');
+            const msg = document.getElementById('subscribeMsg');
+            const email = form.email.value.trim();
+
+            if (!email) return;
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+            msg.textContent = '';
+            msg.className = 'subscribe-msg';
+
+            try {
+                const resp = await fetch('https://api.bloggedai.com/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+                const data = await resp.json();
+                if (resp.ok) {
+                    msg.textContent = data.message || "You're in!";
+                    msg.className = 'subscribe-msg';
+                    form.email.value = '';
+                } else {
+                    msg.textContent = data.error || 'Something went wrong.';
+                    msg.className = 'subscribe-msg error';
+                }
+            } catch (err) {
+                msg.textContent = 'Could not reach the server. Please try again.';
+                msg.className = 'subscribe-msg error';
+            }
+
+            btn.disabled = false;
+            btn.textContent = 'Subscribe';
+        }
 
         // ---- Smooth scroll for anchor links ----
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
