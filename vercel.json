@@ -1,8 +1,10 @@
 {
   "redirects": [
-    { "source": "/blog", "destination": "/blog/", "permanent": false }
+    { "source": "/blog", "destination": "/blog/", "permanent": false },
+    { "source": "/portal", "destination": "/portal/", "permanent": false }
   ],
   "rewrites": [
+    { "source": "/portal/api/:path*", "destination": "https://api.bloggedai.com/portal/api/:path*" },
     { "source": "/blog/", "destination": "https://api.bloggedai.com/blog/" },
     { "source": "/blog/:path*", "destination": "https://api.bloggedai.com/blog/:path*" },
     { "source": "/sitemap.xml", "destination": "https://api.bloggedai.com/sitemap.xml" },

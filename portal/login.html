@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Client Portal — BloggedAI</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/portal/css/portal.css">
+</head>
+<body>
+    <nav class="portal-nav">
+        <div class="portal-nav-inner">
+            <a href="/" class="portal-logo">Blogged<span>AI</span></a>
+        </div>
+    </nav>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h1>Client Portal</h1>
+            <p>Enter your email to receive a secure login link. No password needed.</p>
+            <form id="loginForm">
+                <input type="email" class="login-input" id="emailInput" placeholder="your@email.com" required autocomplete="email">
+                <button type="submit" class="btn-primary" id="submitBtn">Send me a login link</button>
+            </form>
+            <div id="message" style="display:none"></div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const message = document.getElementById('message');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            message.style.display = 'none';
+
+            try {
+                const resp = await fetch('/portal/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                });
+                const data = await resp.json();
+
+                if (resp.ok) {
+                    message.className = 'msg msg-success';
+                    message.textContent = 'Check your email for a login link. It will arrive within a minute.';
+                } else {
+                    message.className = 'msg msg-error';
+                    message.textContent = data.error || 'Something went wrong. Please try again.';
+                }
+            } catch (err) {
+                message.className = 'msg msg-error';
+                message.textContent = 'Network error. Please try again.';
+            }
+
+            message.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send me a login link';
+        });
+    </script>
+</body>
+</html>
