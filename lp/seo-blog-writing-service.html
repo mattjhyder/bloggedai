@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) — GA4 + Google Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C61KLZYTFR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-C61KLZYTFR');
+      gtag('config', 'AW-18009153739');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1449,6 +1450,12 @@
                 event_label: data.keyword,
                 lp_name: 'seo-blog-writing-service'
             });
+            // Google Ads conversion — Contact Form Submit ($99)
+            gtag('event', 'conversion', {
+                'send_to': 'AW-18009153739/7530177962',
+                'value': 99.0,
+                'currency': 'USD'
+            });
         }
 
         // Show loading
@@ -1507,6 +1514,12 @@
                     event_category: 'landing_page',
                     event_label: data.keyword,
                     lp_name: 'seo-blog-writing-service'
+                });
+                // Google Ads conversion — Free Blog Generated ($50)
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-18009153739/7530177965',
+                    'value': 50.0,
+                    'currency': 'USD'
                 });
             }
         })
